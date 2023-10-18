@@ -3,9 +3,11 @@ package org.example.api;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class CreateCourierRequest {
-    String login;
-    String password;
-    String firstName;
+
+    public String login;
+    public String password;
+    public String firstName;
+
     public CreateCourierRequest (String login, String password, String firstName){
         this.login = login;
         this.password = password;
