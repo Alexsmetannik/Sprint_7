@@ -1,9 +1,15 @@
 package org.example.api;
 
-import org.apache.commons.lang3.RandomStringUtils;
+import io.restassured.http.ContentType;
+import io.restassured.response.ValidatableResponse;
+
+import static io.restassured.RestAssured.given;
+import static org.example.config.Enviroment.baseURL;
 
 public class CreateCourierRequest {
 
+    private static final String pathCreate = "/api/v1/courier";
+    private static final String pathDelete = "/api/v1/courier/login";
     public String login;
     public String password;
     public String firstName;
@@ -14,10 +20,44 @@ public class CreateCourierRequest {
         this.firstName = firstName;
     }
 
-    public static CreateCourierRequest getRandomCourierData() {
-        String login = RandomStringUtils.randomAlphabetic(10);
-        String password = RandomStringUtils.randomAlphabetic(12);
-        String firstName = RandomStringUtils.randomAlphabetic(7);
-        return new CreateCourierRequest(login, password,firstName);
+    public CreateCourierRequest () {
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public ValidatableResponse createCourier(CreateCourierRequest createCourierRequest) {
+        return given()
+                //  .log().all()
+                .contentType(ContentType.JSON)
+                .body(createCourierRequest)
+                .when()
+                .post(baseURL + pathCreate)
+                .then();
+                //  .log().all()
+    }
+
+    public ValidatableResponse deleteCourier(int courierId) {
+        return given()
+                //  .log().all()
+                .contentType(ContentType.JSON)
+                .body("{\"id\":\"\"" + courierId + "\"}")
+                .when()
+                .delete(baseURL + pathDelete+ courierId)
+                .then();
+                //  .log().all()
     }
 }
