@@ -11,6 +11,7 @@ import static org.example.config.Enviroment.baseURL;
 public class CreateOrderRequest {
 
     private static final String pathCreate = "/api/v1/orders";
+    private static final String pathList = "/api/v1/orders";
     private String firstName;
     private String lastName;
     private String address;
@@ -44,6 +45,15 @@ public class CreateOrderRequest {
                 .when()
                 .post(baseURL + pathCreate)
                 .then();
+        //  .log().all()
+    }
+
+    public static ValidatableResponse getOrderList(int courierId) {
+        return given()
                 //  .log().all()
+                .when()
+                .get(baseURL + pathList + "?courierId=" + courierId)
+                .then();
+        //  .log().all()
     }
 }
