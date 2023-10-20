@@ -19,14 +19,14 @@ public class LoginCourierTest {
     private int courierId;
 
     @Before
-    public void LoginCourierTest() {
+    public void BeforeLoginCourierTest() {
         successCreatedCourier = CourierGenerator.getRandomCourierData();
         authorizeCourierRequest = new AuthorizeCourierRequest();
     }
 
     @After
     public void deleteCourier() {
-        successCreatedCourier.deleteCourier(courierId);
+        ValidatableResponse responseDelete = successCreatedCourier.deleteCourier(courierId);
     }
 
     //курьер может авторизоваться;

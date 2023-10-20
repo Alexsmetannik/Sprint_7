@@ -21,7 +21,7 @@ public class CreateCourierTest {
     private int courierId;
 
     @Before
-    public void CreateCourierTest(){
+    public void BeforeCreateCourierTest(){
         createCourierRequest = new CreateCourierRequest();
         authorizeCourierRequest = new AuthorizeCourierRequest();
         successCreatedCourier = CourierGenerator.getRandomCourierData();
@@ -32,7 +32,7 @@ public class CreateCourierTest {
 
     @After
     public void deleteCourier() {
-        createCourierRequest.deleteCourier(courierId);
+        ValidatableResponse responseDelete = createCourierRequest.deleteCourier(courierId);
     }
 
         //курьера можно создать

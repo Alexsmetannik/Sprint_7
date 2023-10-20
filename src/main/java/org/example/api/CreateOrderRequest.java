@@ -33,6 +33,9 @@ public class CreateOrderRequest {
         this.color = color;
     }
 
+    public CreateOrderRequest() {
+    }
+
     public ValidatableResponse createOrder(CreateOrderRequest createOrderRequest) {
         return given()
                 //  .log().all()
