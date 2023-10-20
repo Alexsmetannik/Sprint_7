@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.example.api.AuthorizeCourierRequest;
 import org.example.api.CourierGenerator;
@@ -35,10 +37,9 @@ public class CreateCourierTest {
         ValidatableResponse responseDelete = createCourierRequest.deleteCourier(courierId);
     }
 
-        //курьера можно создать
-        //запрос возвращает правильный код ответа
-        //успешный запрос возвращает ok: true
     @Test
+    @DisplayName("Check StatusCode and get 'ok: true' on success create courier")
+    @Description("курьера можно создать, запрос возвращает правильный код ответа, успешный запрос возвращает ok: true")
     public void successCreateCourierTest(){
         ValidatableResponse responseCreate = createCourierRequest.createCourier(successCreatedCourier);
         int actualStatusCode = responseCreate.extract().statusCode();
@@ -49,10 +50,11 @@ public class CreateCourierTest {
         assertTrue("Courier is not created", isCourierCreated);
         }
 
-        //нельзя создать двух одинаковых курьеров
-        //запрос возвращает правильный код ответа
-        //если создать пользователя с логином, который уже есть, возвращается ошибка
     @Test
+    @DisplayName("Check StatusCode and get 'message' after create same courier")
+    @Description("нельзя создать двух одинаковых курьеров, " +
+            "запрос возвращает правильный код ответа, " +
+            "если создать пользователя с логином, который уже есть, возвращается ошибка")
     public void createSameCourierTest(){
         ValidatableResponse responseCreate = createCourierRequest.createCourier(sameCreatedCourier);
         int actualStatusCode = responseCreate.extract().statusCode();
@@ -62,10 +64,11 @@ public class CreateCourierTest {
         assertEquals("You create two same couriers", expectedMessage, actualMessage);
     }
 
-        //чтобы создать курьера, нужно передать в ручку все обязательные поля
-        //запрос возвращает правильный код ответа
-        //если одного из полей нет, запрос возвращает ошибку
     @Test
+    @DisplayName("Check StatusCode and get 'message' after create courier without login")
+    @Description("чтобы создать курьера, нужно передать в ручку все обязательные поля, " +
+            "запрос возвращает правильный код ответа, " +
+            "если одного из полей нет, запрос возвращает ошибку")
     public void createCourierWithoutLoginTest() {
         ValidatableResponse responseCreate = createCourierRequest.createCourier(courierWithoutLogin);
         int actualStatusCode = responseCreate.extract().statusCode();
@@ -75,10 +78,11 @@ public class CreateCourierTest {
         assertEquals("Enough data to create account", expectedMessage, actualMessage);
     }
 
-    //чтобы создать курьера, нужно передать в ручку все обязательные поля
-    //запрос возвращает правильный код ответа
-    //если одного из полей нет, запрос возвращает ошибку
     @Test
+    @DisplayName("Check StatusCode and get 'message' after create courier without password")
+    @Description("чтобы создать курьера, нужно передать в ручку все обязательные поля, " +
+            "запрос возвращает правильный код ответа, " +
+            "если одного из полей нет, запрос возвращает ошибку")
     public void createCourierWithoutPasswordTest() {
         ValidatableResponse responseCreate = createCourierRequest.createCourier(courierWithoutPassword);
         int actualStatusCode = responseCreate.extract().statusCode();

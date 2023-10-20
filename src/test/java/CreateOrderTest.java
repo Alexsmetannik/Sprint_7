@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 
 import org.example.api.*;
@@ -48,11 +50,11 @@ public class CreateOrderTest {
         };
     }
 
-    //можно указать один из цветов — BLACK или GREY
-    //можно указать оба цвета
-    //можно совсем не указывать цвет
-    //тело ответа содержит track
     @Test
+    @DisplayName("Check StatusCode and get 'track' after create order")
+    @Description("можно указать один из цветов — BLACK или GREY, " +
+            "можно указать оба цвета, " +
+            "можно совсем не указывать цвет, тело ответа содержит track")
     public void CreateOrderOptionsColorTest(){
         successCreatedCourier.createCourier(successCreatedCourier);
         ValidatableResponse responseAuthorize = authorizeCourierRequest.authorizeCourier(AuthorizeCourierRequest.from(successCreatedCourier));

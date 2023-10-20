@@ -1,5 +1,6 @@
 package org.example.api;
 
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 
@@ -37,6 +38,7 @@ public class CreateOrderRequest {
     public CreateOrderRequest() {
     }
 
+    @Step("order creation")
     public ValidatableResponse createOrder(CreateOrderRequest createOrderRequest) {
         return given()
                 //  .log().all()
@@ -48,6 +50,7 @@ public class CreateOrderRequest {
         //  .log().all()
     }
 
+    @Step("get list orders")
     public static ValidatableResponse getOrderList(int courierId) {
         return given()
                 //  .log().all()

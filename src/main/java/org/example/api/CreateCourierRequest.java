@@ -1,5 +1,6 @@
 package org.example.api;
 
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 
@@ -39,6 +40,7 @@ public class CreateCourierRequest {
         this.password = password;
     }
 
+    @Step("courier creation")
     public ValidatableResponse createCourier(CreateCourierRequest createCourierRequest) {
         return given()
                 //  .log().all()
@@ -50,6 +52,7 @@ public class CreateCourierRequest {
                 //  .log().all()
     }
 
+    @Step("courier removal")
     public ValidatableResponse deleteCourier(int courierId) {
         return given()
                 //  .log().all()

@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.example.api.AuthorizeCourierRequest;
 import org.example.api.CourierGenerator;
@@ -33,8 +35,9 @@ public class OrderListTest {
         ValidatableResponse responseDelete = successCreatedCourier.deleteCourier(courierId);
     }
 
-    //в тело ответа возвращается список заказов
     @Test
+    @DisplayName("Check StatusCode and success get list orders")
+    @Description("в тело ответа возвращается список заказов")
     public void OrderListTest(){
         successCreatedCourier.createCourier(successCreatedCourier);
         ValidatableResponse responseAuthorize = authorizeCourierRequest.authorizeCourier(AuthorizeCourierRequest.from(successCreatedCourier));

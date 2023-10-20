@@ -1,5 +1,6 @@
 package org.example.api;
 
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 
@@ -24,6 +25,7 @@ public class AuthorizeCourierRequest {
         return new AuthorizeCourierRequest(createCourierRequest.getLogin(), createCourierRequest.getPassword());
     }
 
+    @Step("courier authorization")
     public ValidatableResponse authorizeCourier(AuthorizeCourierRequest authorizeCourierRequest) {
         return given()
                 //  .log().all()

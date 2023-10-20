@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.example.api.AuthorizeCourierRequest;
 import org.example.api.CourierGenerator;
@@ -29,9 +31,9 @@ public class LoginCourierTest {
         ValidatableResponse responseDelete = successCreatedCourier.deleteCourier(courierId);
     }
 
-    //курьер может авторизоваться;
-    //успешный запрос возвращает id
     @Test
+    @DisplayName("Check StatusCode and get 'id' after success authorize courier")
+    @Description("курьер может авторизоваться, успешный запрос возвращает id")
     public void successAuthorizeCourierTest(){
         successCreatedCourier.createCourier(successCreatedCourier);
         ValidatableResponse responseAuthorize = authorizeCourierRequest.authorizeCourier(AuthorizeCourierRequest.from(successCreatedCourier));
@@ -41,9 +43,10 @@ public class LoginCourierTest {
         assertThat(courierId, notNullValue());
     }
 
-    //для авторизации нужно передать все обязательные поля
-    //если какого-то поля нет, запрос возвращает ошибку
     @Test
+    @DisplayName("Check StatusCode and get 'message' after authorize courier without login")
+    @Description("для авторизации нужно передать все обязательные поля, " +
+            "если какого-то поля нет, запрос возвращает ошибку")
     public void authorizeCourierWithoutLoginTest() {
         successCreatedCourier.createCourier(successCreatedCourier);
         ValidatableResponse responseAuthorize = authorizeCourierRequest.authorizeCourier(AuthorizeCourierRequest.from(successCreatedCourier));
@@ -57,9 +60,10 @@ public class LoginCourierTest {
         assertEquals("Enough login data", expectedMessage, actualMessage);
     }
 
-    //для авторизации нужно передать все обязательные поля
-    //если какого-то поля нет, запрос возвращает ошибку
     @Test
+    @DisplayName("Check StatusCode and get 'message' after authorize courier without password")
+    @Description("для авторизации нужно передать все обязательные поля, " +
+            "если какого-то поля нет, запрос возвращает ошибку")
     public void authorizeCourierWithoutPasswordTest() {
         successCreatedCourier.createCourier(successCreatedCourier);
         ValidatableResponse responseAuthorize = authorizeCourierRequest.authorizeCourier(AuthorizeCourierRequest.from(successCreatedCourier));
@@ -73,9 +77,10 @@ public class LoginCourierTest {
         assertEquals("Enough login data", expectedMessage, actualMessage);
     }
 
-    //система вернёт ошибку, если неправильно указать логин или пароль
-    //если авторизоваться под несуществующим пользователем, запрос возвращает ошибку
     @Test
+    @DisplayName("Check StatusCode and get 'message' after authorize courier with wrong login")
+    @Description("система вернёт ошибку, если неправильно указать логин или пароль, " +
+            "если авторизоваться под несуществующим пользователем, запрос возвращает ошибку")
     public void authorizeCourierWithWrongLoginTest() {
         successCreatedCourier.createCourier(successCreatedCourier);
         ValidatableResponse responseAuthorize = authorizeCourierRequest.authorizeCourier(AuthorizeCourierRequest.from(successCreatedCourier));
@@ -89,9 +94,10 @@ public class LoginCourierTest {
         assertEquals("Account is found", expectedMessage, actualMessage);
     }
 
-    //система вернёт ошибку, если неправильно указать логин или пароль
-    //если авторизоваться под несуществующим пользователем, запрос возвращает ошибку
     @Test
+    @DisplayName("Check StatusCode and get 'message' after authorize courier with wrong password")
+    @Description("система вернёт ошибку, если неправильно указать логин или пароль, " +
+            "если авторизоваться под несуществующим пользователем, запрос возвращает ошибку")
     public void authorizeCourierWithWrongPasswordTest() {
         successCreatedCourier.createCourier(successCreatedCourier);
         ValidatableResponse responseAuthorize = authorizeCourierRequest.authorizeCourier(AuthorizeCourierRequest.from(successCreatedCourier));
