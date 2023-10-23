@@ -10,7 +10,7 @@ import static org.example.config.Enviroment.baseURL;
 public class CreateCourierRequest {
 
     private static final String pathCreate = "/api/v1/courier";
-    private static final String pathDelete = "/api/v1/courier/login";
+    private static final String pathDelete = "/api/v1/courier/";
     public String login;
     public String password;
     public String firstName;
@@ -40,6 +40,8 @@ public class CreateCourierRequest {
         this.password = password;
     }
 
+    BodyRequestDelete bodyRequestDelete = new BodyRequestDelete();
+
     @Step("courier creation")
     public ValidatableResponse createCourier(CreateCourierRequest createCourierRequest) {
         return given()
@@ -54,13 +56,14 @@ public class CreateCourierRequest {
 
     @Step("courier removal")
     public ValidatableResponse deleteCourier(int courierId) {
+        bodyRequestDelete.setCourierId(courierId);
         return given()
-                //  .log().all()
+                //.log().all()
                 .contentType(ContentType.JSON)
-                .body("{\"id\":\"\"" + courierId + "\"}")
+                .body(bodyRequestDelete)
                 .when()
-                .delete(baseURL + pathDelete+ courierId)
+                .delete(baseURL + pathDelete + courierId)
                 .then();
-                //  .log().all()
+                //.log().all();
     }
 }
