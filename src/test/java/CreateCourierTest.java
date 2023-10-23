@@ -2,7 +2,6 @@ import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.example.api.AuthorizeCourierRequest;
-import org.example.api.BodyRequestDelete;
 import org.example.api.CourierGenerator;
 import org.example.api.CreateCourierRequest;
 import org.junit.After;
@@ -24,7 +23,7 @@ public class CreateCourierTest {
     private int courierId;
 
     @Before
-    public void BeforeCreateCourierTest(){
+    public void beforeCreateCourierTest(){
         createCourierRequest = new CreateCourierRequest();
         authorizeCourierRequest = new AuthorizeCourierRequest();
         successCreatedCourier = CourierGenerator.getRandomCourierData();

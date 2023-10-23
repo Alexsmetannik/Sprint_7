@@ -21,7 +21,7 @@ public class LoginCourierTest {
     private int courierId;
 
     @Before
-    public void BeforeLoginCourierTest() {
+    public void beforeLoginCourierTest() {
         successCreatedCourier = CourierGenerator.getRandomCourierData();
         authorizeCourierRequest = new AuthorizeCourierRequest();
     }

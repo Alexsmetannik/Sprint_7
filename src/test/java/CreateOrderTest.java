@@ -26,7 +26,7 @@ public class CreateOrderTest {
     private int courierId;
 
     @Before
-    public void BeforeCreateOrderTest() {
+    public void beforeCreateOrderTest() {
         successCreatedCourier = CourierGenerator.getRandomCourierData();
         authorizeCourierRequest = new AuthorizeCourierRequest();
     }
@@ -55,7 +55,7 @@ public class CreateOrderTest {
     @Description("можно указать один из цветов — BLACK или GREY, " +
             "можно указать оба цвета, " +
             "можно совсем не указывать цвет, тело ответа содержит track")
-    public void CreateOrderOptionsColorTest(){
+    public void createOrderOptionsColorTest(){
         successCreatedCourier.createCourier(successCreatedCourier);
         ValidatableResponse responseAuthorize = authorizeCourierRequest.authorizeCourier(AuthorizeCourierRequest.from(successCreatedCourier));
         courierId = responseAuthorize.extract().path("id");

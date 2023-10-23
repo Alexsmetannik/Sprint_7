@@ -24,7 +24,7 @@ public class OrderListTest {
     private int courierId;
 
     @Before
-    public void BeforeOrderListTest() {
+    public void beforeOrderListTest() {
         successCreatedCourier = CourierGenerator.getRandomCourierData();
         authorizeCourierRequest = new AuthorizeCourierRequest();
         createOrderRequest = new CreateOrderRequest();
@@ -38,7 +38,7 @@ public class OrderListTest {
     @Test
     @DisplayName("Check StatusCode and success get list orders")
     @Description("в тело ответа возвращается список заказов")
-    public void OrderListTest(){
+    public void orderListTest(){
         successCreatedCourier.createCourier(successCreatedCourier);
         ValidatableResponse responseAuthorize = authorizeCourierRequest.authorizeCourier(AuthorizeCourierRequest.from(successCreatedCourier));
         courierId = responseAuthorize.extract().path("id");
