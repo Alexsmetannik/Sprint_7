@@ -41,13 +41,13 @@ public class CreateOrderRequest {
     @Step("order creation")
     public ValidatableResponse createOrder(CreateOrderRequest createOrderRequest) {
         return given()
-                //  .log().all()
+                //.log().all()
                 .contentType(ContentType.JSON)
                 .body(createOrderRequest)
                 .when()
                 .post(baseURL + pathCreate)
                 .then();
-        //  .log().all()
+                //.log().all();
     }
 
     @Step("get list orders")
